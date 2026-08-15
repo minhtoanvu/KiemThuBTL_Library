@@ -1,0 +1,63 @@
+name: Run Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      PYTHONPATH: .
+      TESTING: 1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # ---------- Unit Tests (không cần server) ----------
+      - name: Run Unit Tests
+        run: |
+          python -m pytest app/tests --ignore=app/tests/test_sel.py -v --tb=short
+
+      # ---------- Seed fake data + Seleniumd Tests ----------
+      - name: Seed test data
+        run: |
+          python seed_test_data.py
+
+      - name: Start Flask
+        run: |
+          nohup python index.py > flask.log 2>&1 &
+
+      - name: Wait for server
+        run: |
+          sleep 10
+          for i in {1..30}; do
+            if curl -s http://localhost:5000/ > /dev/null 2>&1; then
+              echo "Server is up!"
+              exit 0
+            fi
+            echo "Waiting for server... (attempt $i/30)"
+            sleep 1
+          done
+          echo "Server failed to start"
+          cat flask.log
+          exit 1
+
+      - name: Run Selenium Tests
+        run: |
+          python -m pytest app/tests/test_sel.py -v --tb=short
