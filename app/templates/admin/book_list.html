@@ -1,0 +1,90 @@
+{% extends 'admin/model/list.html' %}
+{% import 'admin/lib.html' as lib with context %}
+{% import 'admin/static.html' as admin_static with context %}
+{% import 'admin/model/layout.html' as model_layout with context %}
+{% import 'admin/actions.html' as actionlib with context %}
+{% import 'admin/model/row_actions.html' as row_actions with context %}
+{% block body %}
+    <div class="admin-header d-flex justify-content-between align-items-center mb-4" style="border-bottom: 2px solid #e0e0e0; padding-bottom: 1rem;">
+        {% if admin_view.can_create %}
+        <a href="{{ get_url('.create_view', url=return_url) }}" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Thêm sách mới
+        </a>
+        {% endif %}
+    </div>
+
+    <!-- Bảng danh sách sách -->
+    <div class="table-responsive bg-white p-3 rounded shadow-sm">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
+                <tr>
+                    {% for c, name in list_columns %}
+                    <th>{{ name }}</th>
+                    {% endfor %}
+                    <th class="text-end">Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for c, name in list_columns %}
+                    <td>
+                        {% if c == 'image' %}
+                            <img src="{{ url_for('static', filename='images/' ~ (row.image or 'default_cover.png')) }}" 
+                                 alt="{{ row.title }}" style="width: 50px; height: 70px; object-fit: cover; border-radius: 4px; border: 1px solid #ddd;">
+                        {% elif c == 'quantity' %}
+                            <span class="badge {% if row.quantity > 0 %}bg-success{% else %}bg-danger{% endif %}" style="font-size: 0.85rem; padding: 0.4rem 0.6rem;">
+                                {{ row.quantity }} cuốn
+                            </span>
+                        {% elif c == 'category_ref' %}
+                            <span class="badge bg-secondary" style="font-size: 0.85rem; padding: 0.4rem 0.6rem; background-color: #6c757d !important;">
+                                {{ row.category_ref.name if row.category_ref else 'Chưa phân loại' }}
+                            </span>
+                        {% else %}
+                            {{ get_value(row, c) }}
+                        {% endif %}
+                    </td>
+                    {% endfor %}
+                    <td class="text-end">
+                        <div class="btn-group btn-group-sm">
+                            {% if admin_view.can_edit %}
+                            <a href="{{ get_url('.edit_view', id=get_pk_value(row), url=return_url) }}" class="btn btn-warning" style="margin-right: 5px;">
+                                <i class="bi bi-pencil-square"></i> Sửa
+                            </a>
+                            {% endif %}
+                            {% if admin_view.can_delete %}
+                            <form action="{{ get_url('.delete_view') }}" method="POST" style="display: inline-block;" onsubmit="return confirm('Bạn có chắc muốn xóa truyện này không?')">
+                                <input type="hidden" name="id" value="{{ get_pk_value(row) }}">
+                                <input type="hidden" name="url" value="{{ return_url }}">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bi bi-trash"></i> Xóa
+                                </button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="{{ list_columns|length + 1 }}" class="text-center text-muted py-4">
+                        Chưa có cuốn sách nào trong kho thư viện.
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Phân trang -->
+    {% if num_pages > 1 %}
+    <nav class="mt-3">
+        <ul class="pagination justify-content-center">
+            {% for p in range(num_pages) %}
+            <li class="page-item {% if p == page %}active{% endif %}">
+                <a class="page-link" href="?page={{ p }}">{{ p + 1 }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </nav>
+    {% endif %}
+{% endblock %}

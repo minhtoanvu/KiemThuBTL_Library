@@ -1,0 +1,34 @@
+<!-- Bộ lọc tìm kiếm sách nâng cao (Search Form) -->
+<form action="/" method="GET" class="search-advanced">
+    <div class="search-filters">
+        <div class="filter-group">
+            <label for="search-keyword"><i class="bi bi-book"></i> Tên sách</label>
+            <input type="text" id="search-keyword" name="keyword" class="form-control"
+                   placeholder="Nhập tên sách..."
+                   value="{{ request.args.get('keyword', '') }}">
+        </div>
+        <div class="filter-group">
+            <label for="search-author"><i class="bi bi-pen"></i> Tác giả</label>
+            <input type="text" id="search-author" name="author" class="form-control"
+                   placeholder="Nhập tên tác giả..."
+                   value="{{ request.args.get('author', '') }}">
+        </div>
+        <div class="filter-group">
+            <label for="search-category"><i class="bi bi-tag"></i> Thể loại</label>
+            <select id="search-category" name="category" class="form-control">
+                <option value="">-- Tất cả thể loại --</option>
+                {% for cat in categories %}
+                <option value="{{ cat }}" {% if request.args.get('category') == cat %}selected{% endif %}>{{ cat }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="search-actions">
+        <button type="submit" class="btn-search-advanced">
+            <i class="bi bi-search"></i> Tìm kiếm
+        </button>
+        <a href="/" class="btn-reset">
+            <i class="bi bi-arrow-counterclockwise"></i> Đặt lại
+        </a>
+    </div>
+</form>

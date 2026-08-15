@@ -1,0 +1,51 @@
+<!-- Modal (Hộp thoại) xác nhận mượn sách -->
+<div class="modal fade" id="borrowModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="bi bi-bookmark-star"></i> Xác nhận mượn sách</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="borrowForm" method="POST">
+                <div class="modal-body">
+                    <div class="modal-detail-row">
+                        <span class="modal-detail-label">Tên sách</span>
+                        <span class="modal-detail-value" id="modal-book-title"></span>
+                    </div>
+                    <div class="modal-detail-row">
+                        <span class="modal-detail-label">Thể loại</span>
+                        <span class="modal-detail-value" id="modal-book-category"></span>
+                    </div>
+                    <div class="modal-detail-row">
+                        <span class="modal-detail-label">Còn lại</span>
+                        <span class="modal-detail-value" id="modal-book-qty"></span>
+                    </div>
+
+                    <hr style="border-color: var(--border); margin: 1rem 0;">
+
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <label for="modal-borrow-qty" class="modal-detail-label" style="white-space:nowrap;">Số lượng mượn</label>
+                        <input type="number" name="quantity" id="modal-borrow-qty" class="form-control"
+                               value="1" min="1" max="5"
+                               style="width:80px; border:1px solid var(--border); border-radius:6px; text-align:center; padding:0.4rem;">
+                    </div>
+
+                    <!-- Danh sách hạn trả cho từng cuốn (Tạo động bằng JS trong main.js) -->
+                    <div id="due-dates-container">
+                        <div class="due-date-row" style="display:flex; align-items:center; gap:0.8rem; margin-bottom:0.6rem;">
+                            <label style="white-space:nowrap; font-size:0.88rem; color:var(--text-secondary); min-width:70px;">Cuốn 1</label>
+                            <input type="date" name="due_date_1" class="form-control" required
+                                   style="border:1px solid var(--border); border-radius:6px; padding:0.4rem 0.6rem; font-size:0.88rem;">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="border-radius:6px;">Hủy</button>
+                    <button type="submit" class="btn-gradient" style="width:auto; padding:0.5rem 1.5rem;">
+                        <i class="bi bi-check-lg"></i> Xác nhận mượn
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

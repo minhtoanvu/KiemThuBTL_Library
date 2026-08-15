@@ -1,0 +1,79 @@
+<!-- Kết quả: hiển thị số sách -->
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+    <p style="color:var(--text-muted); font-size:0.88rem; margin:0;">
+        Hiển thị {{ books.items|length }} / {{ books.total }} sách
+        {% if books.pages > 1 %} — Trang {{ books.page }}/{{ books.pages }}{% endif %}
+    </p>
+</div>
+
+<!-- Danh sách sách hiển thị dạng Grid Cards -->
+<div class="row g-3">
+    {% for book in books.items %}
+    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6 book-col">
+        <div class="book-card">
+            <div class="book-cover">
+                <img src="{{ url_for('static', filename='images/' ~ (book.image or 'default_cover.png')) }}"
+                     alt="{{ book.title }}">
+            </div>
+            <div class="book-info">
+                <h5 class="book-title">{{ book.title }}</h5>
+                <p class="book-author"><i class="bi bi-pen"></i> {{ book.author }}</p>
+                <div class="book-meta">
+                    {% if book.category_ref %}
+                    <span class="badge-category">{{ book.category_ref.name }}</span>
+                    {% endif %}
+                    <span id="book-qty-{{ book.id }}" class="badge-qty {% if book.quantity <= 0 %}out-of-stock{% endif %}">
+                        {% if book.quantity > 0 %}
+                            Còn {{ book.quantity }}
+                        {% else %}
+                            Hết sách
+                        {% endif %}
+                    </span>
+                </div>
+                <button type="button" class="btn-gradient"
+                        {% if book.quantity <= 0 %}disabled{% endif %}
+                        data-bs-toggle="modal"
+                        data-bs-target="#borrowModal"
+                        data-id="{{ book.id }}"
+                        data-title="{{ book.title }}"
+                        data-category="{{ book.category_ref.name if book.category_ref else 'Chưa phân loại' }}"
+                        data-qty="{{ book.quantity }}">
+                    {% if book.quantity > 0 %}
+                        <i class="bi bi-cart-plus"></i> Mượn sách
+                    {% else %}
+                        <i class="bi bi-x-circle"></i> Hết sách
+                    {% endif %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+<!-- Phân trang dữ liệu -->
+{% if books.pages > 1 %}
+<nav class="mt-4">
+    <ul class="pagination-custom">
+        {% if books.has_prev %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('index', page=books.prev_num, keyword=request.args.get('keyword',''), author=request.args.get('author',''), category=request.args.get('category','')) }}">&laquo; Trước</a>
+        </li>
+        {% endif %}
+        {% for page_num in books.iter_pages(left_edge=1, right_edge=1, left_current=2, right_current=2) %}
+            {% if page_num %}
+            <li class="page-item {% if page_num == books.page %}active{% endif %}">
+                <a class="page-link" href="{{ url_for('index', page=page_num, keyword=request.args.get('keyword',''), author=request.args.get('author',''), category=request.args.get('category','')) }}">{{ page_num }}</a>
+            </li>
+            {% else %}
+            <li class="page-item"><span class="page-link" style="border:none; background:none; color:var(--text-muted);">…</span></li>
+            {% endif %}
+        {% endfor %}
+        {% if books.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="{{ url_for('index', page=books.next_num, keyword=request.args.get('keyword',''), author=request.args.get('author',''), category=request.args.get('category','')) }}">Sau &raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}

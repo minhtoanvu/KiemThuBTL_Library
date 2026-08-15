@@ -1,0 +1,25 @@
+{% extends admin_base_template %}
+
+{% block head_css %}
+    {{ super() }}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/admin.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='admin/custom.css') }}" rel="stylesheet">
+{% endblock %}
+
+{# Override main_menu to remove the default "Home" item from the navbar #}
+{% block main_menu %}
+    <ul class="nav navbar-nav mr-auto">
+        {% set menu_root = admin_view.admin.menu() %}
+        {% for item in menu_root %}
+            {%- if item.is_accessible() and item.is_visible() and item.name != 'Home' -%}
+                {% set class_name = item.get_class_name() %}
+                <li {% if item.is_active(admin_view) %}class="active"{% endif %}>
+                    <a class="nav-link {{ class_name }}" href="{{ item.get_url() }}"{% if item.target %} target="{{ item.target }}"{% endif %}>
+                        {{ layout.menu_icon(item) }}{{ item.name }}
+                    </a>
+                </li>
+            {%- endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}

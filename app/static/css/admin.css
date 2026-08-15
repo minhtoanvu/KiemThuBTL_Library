@@ -1,0 +1,367 @@
+
+body {
+  background: #f5f5f5 !important;
+  color: #222 !important;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+}
+
+/* Navbar */
+.navbar, .navbar-dark, .bg-dark {
+  background: #fff !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.navbar-brand {
+  font-weight: 700 !important;
+  color: #1a73e8 !important;
+  font-size: 1.1rem !important;
+}
+
+.navbar-nav .nav-link {
+  color: #555 !important;
+  font-size: 0.9rem;
+  padding: 0.4rem 0.8rem !important;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+  color: #222 !important;
+  background: #f0f0f0;
+}
+
+/* Container */
+.container-fluid, .container {
+  background: transparent !important;
+}
+
+/* Cards & Content Area */
+.card, .panel, .well {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  color: #222 !important;
+}
+
+/* Tables */
+.table, table {
+  color: #222 !important;
+  background: #fff !important;
+}
+
+.table thead th {
+  background: #fafafa !important;
+  color: #999 !important;
+  border-bottom: 1px solid #e0e0e0 !important;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+  padding: 0.7rem 1rem !important;
+}
+
+.table td {
+  border-bottom: 1px solid #f0f0f0 !important;
+  padding: 0.65rem 1rem !important;
+  vertical-align: middle !important;
+  color: #222 !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #fafafa !important;
+}
+
+.table-hover tbody tr:hover {
+  background-color: #f0f4ff !important;
+}
+
+.table-responsive {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Tabs */
+.nav-tabs {
+  border-bottom: 1px solid #e0e0e0 !important;
+  margin-bottom: 1.5rem;
+}
+
+.nav-tabs .nav-link {
+  color: #555 !important;
+  border: none !important;
+  border-bottom: 2px solid transparent !important;
+  padding: 0.5rem 1rem !important;
+  border-radius: 0 !important;
+  transition: color 0.2s;
+}
+
+.nav-tabs .nav-link:hover {
+  color: #222 !important;
+  border-bottom-color: #ccc !important;
+  background: transparent !important;
+}
+
+.nav-tabs .nav-link.active {
+  color: #1a73e8 !important;
+  background: transparent !important;
+  border-bottom-color: #1a73e8 !important;
+}
+
+/* Forms */
+.form-control, select.form-control, input[type="text"], input[type="number"],
+input[type="password"], input[type="email"], textarea {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #222 !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 0.8rem !important;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus, select.form-control:focus {
+  border-color: #1a73e8 !important;
+  box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.15) !important;
+  outline: none !important;
+}
+
+label, .control-label {
+  color: #555 !important;
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+
+/* Buttons */
+.btn-primary {
+  background: #1a73e8 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-primary:hover {
+  background: #1558b0 !important;
+}
+
+.btn-danger {
+  background: #d32f2f !important;
+  border: none !important;
+  border-radius: 20px !important;
+}
+
+.btn-danger:hover {
+  background: #b71c1c !important;
+}
+
+.btn-default, .btn-secondary, .btn-light {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #555 !important;
+  border-radius: 6px !important;
+}
+
+.btn-default:hover, .btn-secondary:hover, .btn-light:hover {
+  background: #f0f0f0 !important;
+  color: #222 !important;
+}
+
+.btn-warning {
+  background: #ed6c02 !important;
+  border: none !important;
+border-radius: 20px !important;
+  color: #fff !important;
+}
+
+.btn-success {
+  background: #2e7d32 !important;
+  border: none !important;
+border-radius: 20px !important;
+}
+
+/* Action icons (edit/delete) */
+.icon-pencil, .icon-remove, .fa-pencil, .fa-trash, .glyphicon {
+  color: #999;
+  transition: color 0.2s;
+}
+
+a:hover .icon-pencil, a:hover .fa-pencil { color: #1a73e8; }
+a:hover .icon-remove, a:hover .fa-trash { color: #d32f2f; }
+
+/* Links */
+a { color: #1a73e8; transition: color 0.2s; }
+a:hover { color: #1558b0; text-decoration: none; }
+
+/* Pagination */
+.pagination .page-link {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #555 !important;
+  border-radius: 6px !important;
+  margin: 0 2px;
+  transition: background 0.2s;
+}
+
+.pagination .page-link:hover {
+  background: #1a73e8 !important;
+  color: #fff !important;
+}
+
+.pagination .active .page-link {
+  background: #1a73e8 !important;
+  color: #fff !important;
+  border-color: #1a73e8 !important;
+}
+
+/* Modals */
+.modal-content {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  color: #222 !important;
+}
+
+.modal-header { border-bottom: 1px solid #e0e0e0 !important; }
+.modal-footer { border-top: 1px solid #e0e0e0 !important; }
+.modal-title { color: #222 !important; }
+.close, .btn-close { color: #222 !important; filter: none; }
+
+/* Dropdown */
+.dropdown-menu {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.dropdown-item {
+  color: #555 !important;
+  transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+  background: #f0f4ff !important;
+  color: #222 !important;
+}
+
+/* Alerts */
+.alert {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  border-left: 4px solid #1a73e8 !important;
+  color: #222 !important;
+  border-radius: 6px !important;
+}
+
+.alert-success { border-left-color: #2e7d32 !important; }
+.alert-danger { border-left-color: #d32f2f !important; }
+.alert-warning { border-left-color: #ed6c02 !important; }
+
+/* Checkbox */
+input[type="checkbox"] {
+  accent-color: #1a73e8;
+  width: 16px;
+  height: 16px;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #222 !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+}
+
+/* Filters sidebar */
+.filters .filter-row {
+  background: #fafafa;
+  border-radius: 6px;
+  padding: 0.5rem;
+  margin-bottom: 0.3rem;
+}
+
+/* Footer */
+footer, .footer {
+  background: transparent !important;
+  color: #999 !important;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Select2 (if used by Flask-Admin) */
+.select2-container--default .select2-selection--single {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+  color: #222 !important;
+  border-radius: 6px !important;
+}
+
+.select2-dropdown {
+  background: #fff !important;
+  border: 1px solid #e0e0e0 !important;
+}
+
+.select2-results__option {
+  color: #222 !important;
+}
+
+.select2-results__option--highlighted {
+  background: #e8f0fe !important;
+}
+
+/* Ẩn nút Save and Add Another, Save and Continue Editing */
+input[name="_add_another"],
+input[name="_continue_editing"] {
+  display: none !important;
+}
+
+/* Fix thể loại dropdown bị đè */
+.select2-container {
+  z-index: 9999 !important;
+  border: none !important;
+  padding: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.select2-container--open .select2-dropdown {
+  z-index: 10000 !important;
+}
+
+/* Form group spacing - tránh bị đè */
+.form-group, .control-group {
+  margin-bottom: 1.2rem !important;
+  position: relative;
+}
+
+/* Image upload field */
+.image-upload-field input[type="file"] {
+  padding: 0.4rem !important;
+}
+
+.image-thumbnail {
+  max-width: 120px;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+.field-control{
+    width:100%;
+}
+
+.form-select{
+    width:100% !important;
+    display:block;
+    box-sizing:border-box;
+}
+.form-group img{
+    display:block;
+    margin-bottom:10px;
+}
+
+.form-group input[type="checkbox"]{
+    margin-left:0 !important;
+    vertical-align:middle;
+}
+
+.form-group label{
+    display:block;
+}

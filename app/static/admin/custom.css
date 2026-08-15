@@ -1,0 +1,24 @@
+/* Custom admin overrides - place your tweaks here */
+
+/* Ensure form controls span full width in admin forms */
+.form-control {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Make select2 (if used) take full width and sit above other elements */
+.select2-container {
+  width: 100% !important;
+  z-index: 10500 !important;
+}
+
+.form-group label.control-label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Slightly larger thumbnails in book form */
+.image-thumbnail { max-width: 160px; }
+
+/* Space form rows a bit more */
+.form-group, .control-group { margin-bottom: 1.25rem !important; }

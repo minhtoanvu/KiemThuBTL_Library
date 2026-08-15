@@ -1,0 +1,64 @@
+{% extends 'admin/model/create.html' %}
+
+{% block body %}
+    <div class="admin-header mb-4" style="border-bottom: 2px solid #e0e0e0; padding-bottom: 1rem;">
+        <h2><i class="bi bi-plus-circle"></i> Thêm sách mới</h2>
+        <a href="{{ return_url }}" class="btn btn-secondary btn-sm mt-2">
+            <i class="bi bi-arrow-left"></i> Quay lại danh sách
+        </a>
+    </div>
+
+    <div class="card bg-white p-4 rounded shadow-sm" style="max-width: 700px;">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% if form.csrf_token %}
+                {{ form.csrf_token }}
+            {% endif %}
+
+            {% for field in form if field.type != 'CSRFTokenField' and field.type != 'HiddenField' %}
+            <div class="form-group mb-4">
+                <label class="form-label font-weight-bold" for="{{ field.id }}" style="display: block; margin-bottom: 0.5rem; font-weight: 600;">
+                    {{ field.label.text }}
+                </label>
+               <div class="field-control">
+
+                {% if field.type == 'FileField' or field.type == 'ImageUploadField' %}
+
+                    {{ field(class="form-control-file") }}
+
+                {% elif 'Select' in field.type %}
+
+                    {{ field(style="width: 100%;") }}
+
+                {% else %}
+
+                    {{ field(class="form-control") }}
+
+                {% endif %}
+
+            </div>
+                {% if field.errors %}
+                <div class="text-danger mt-1">
+                    {% for error in field.errors %}
+                        <small class="d-block"><i class="bi bi-exclamation-triangle"></i> {{ error }}</small>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                {% if field.description %}
+                <small class="text-muted d-block mt-1">{{ field.description }}</small>
+                {% endif %}
+            </div>
+            {% endfor %}
+
+            {% for field in form if field.type == 'HiddenField' %}
+                {{ field }}
+            {% endfor %}
+
+            <div class="mt-4 border-top pt-3 text-end">
+                <a href="{{ return_url }}" class="btn btn-secondary" style="margin-right: 10px;">Hủy</a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="bi bi-save"></i> Thêm sách
+                </button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

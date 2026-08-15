@@ -1,0 +1,15 @@
+{% extends 'user/base.html' %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section">
+    <h1 class="hero-title">Thư Viện Sách</h1>
+    <p class="hero-subtitle">Tìm kiếm và mượn sách yêu thích của bạn</p>
+</div>
+
+{% include 'user/search_filters.html' %}
+
+{% include 'user/book_list.html' %}
+
+{% include 'user/borrow_modal.html' %}
+{% endblock %}

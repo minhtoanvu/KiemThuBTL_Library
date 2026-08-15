@@ -1,0 +1,115 @@
+{% extends 'user/base.html' %}
+
+{% block title %}Đăng ký - Thư Viện Minh{% endblock %}
+
+{% block content %}
+<div class="login-wrapper">
+    <div class="login-card register-card">
+        <div class="login-icon register-icon">
+            <i class="bi bi-person-plus-fill"></i>
+        </div>
+        <h2 class="login-title">Tạo tài khoản mới</h2>
+        <p class="login-subtitle">Đăng ký để bắt đầu mượn sách tại thư viện</p>
+
+        <form action="{{ url_for('register_process') }}" method="POST" id="registerForm">
+            <div class="form-group-custom">
+                <label for="reg_username">Tên đăng nhập</label>
+                <div class="input-wrapper">
+                    <i class="bi bi-person input-icon"></i>
+                    <input type="text" id="reg_username" name="username" class="form-control"
+                           placeholder="Nhập tên đăng nhập (3-50 ký tự)" required minlength="3" maxlength="50">
+                </div>
+            </div>
+            <div class="form-group-custom">
+                <label for="reg_password">Mật khẩu</label>
+                <div class="input-wrapper">
+                    <i class="bi bi-lock input-icon"></i>
+                    <input type="password" id="reg_password" name="password" class="form-control"
+                           placeholder="Nhập mật khẩu (6 ký tự trở lên)" required minlength="6">
+                </div>
+                <div class="password-strength" id="passwordStrength"></div>
+            </div>
+            <div class="form-group-custom">
+                <label for="reg_confirm">Xác nhận mật khẩu</label>
+                <div class="input-wrapper">
+                    <i class="bi bi-shield-lock input-icon"></i>
+                    <input type="password" id="reg_confirm" name="confirm_password" class="form-control"
+                           placeholder="Nhập lại mật khẩu" required minlength="6">
+                </div>
+                <small class="confirm-hint" id="confirmHint"></small>
+            </div>
+            <button type="submit" class="btn-login btn-register" id="btnRegister">
+                <i class="bi bi-person-check"></i> Đăng ký
+            </button>
+        </form>
+
+        <div class="register-footer">
+            <p>Đã có tài khoản? <a href="{{ url_for('login_view') }}" class="link-accent">Đăng nhập ngay</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Password strength indicator
+    const passwordInput = document.getElementById('reg_password');
+    const confirmInput = document.getElementById('reg_confirm');
+    const strengthBar = document.getElementById('passwordStrength');
+    const confirmHint = document.getElementById('confirmHint');
+    const btnRegister = document.getElementById('btnRegister');
+
+    passwordInput.addEventListener('input', function() {
+        const val = this.value;
+        let strength = 0;
+        if (val.length >= 6) strength++;
+        if (val.length >= 10) strength++;
+        if (/[A-Z]/.test(val)) strength++;
+        if (/[0-9]/.test(val)) strength++;
+        if (/[^A-Za-z0-9]/.test(val)) strength++;
+
+        strengthBar.className = 'password-strength';
+        if (val.length === 0) {
+            strengthBar.textContent = '';
+            strengthBar.style.display = 'none';
+        } else if (strength <= 1) {
+            strengthBar.textContent = '🔴 Yếu';
+            strengthBar.classList.add('strength-weak');
+            strengthBar.style.display = 'block';
+        } else if (strength <= 3) {
+            strengthBar.textContent = '🟡 Trung bình';
+            strengthBar.classList.add('strength-medium');
+            strengthBar.style.display = 'block';
+        } else {
+            strengthBar.textContent = '🟢 Mạnh';
+            strengthBar.classList.add('strength-strong');
+            strengthBar.style.display = 'block';
+        }
+        checkConfirm();
+    });
+
+    confirmInput.addEventListener('input', checkConfirm);
+
+    function checkConfirm() {
+        if (confirmInput.value.length === 0) {
+            confirmHint.textContent = '';
+            confirmHint.className = 'confirm-hint';
+            return;
+        }
+        if (confirmInput.value === passwordInput.value) {
+            confirmHint.textContent = '✓ Mật khẩu khớp';
+            confirmHint.className = 'confirm-hint hint-match';
+        } else {
+            confirmHint.textContent = '✗ Mật khẩu chưa khớp';
+            confirmHint.className = 'confirm-hint hint-mismatch';
+        }
+    }
+
+    document.getElementById('registerForm').addEventListener('submit', function(e) {
+        if (passwordInput.value !== confirmInput.value) {
+            e.preventDefault();
+            confirmHint.textContent = '✗ Mật khẩu chưa khớp!';
+            confirmHint.className = 'confirm-hint hint-mismatch';
+            confirmInput.focus();
+        }
+    });
+</script>
+{% endblock %}

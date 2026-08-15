@@ -1,0 +1,113 @@
+{% extends 'user/base.html' %}
+
+{% block title %}Sách của tôi - Thư Viện Minh{% endblock %}
+
+{% block content %}
+<h2 class="page-title"><i class="bi bi-journal-bookmark-fill"></i> Quản lý mượn trả</h2>
+
+<!-- Sách đang mượn -->
+<div class="section-card">
+    <div class="section-header primary">
+        <i class="bi bi-clock-history"></i> Sách đang mượn (Chờ trả)
+    </div>
+    <div style="overflow-x: auto;">
+        <table class="table-dark-custom borrowing-book">
+            <thead>
+                <tr>
+                    <th>Tên sách</th>
+                    <th>Ngày mượn</th>
+                    <th>Hạn trả</th>
+                    <th>Tiền phạt dự kiến</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in history if r.status != 'RETURNED' %}
+                <tr>
+                    <td><strong>{{ r.book.title }}</strong></td>
+                    <td>{{ r.borrow_date.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ r.due_date.strftime('%d/%m/%Y') }}</td>
+                    <td>
+                        {% set fine = utils.calculate_fine(r.due_date, r.return_date) %}
+                        {% if fine > 0 %}
+                            <span class="fine-amount"><i class="bi bi-exclamation-triangle"></i> {{ "{:,}".format(fine) }} VNĐ</span>
+                        {% else %}
+                            <span style="color: var(--success);"><i class="bi bi-check-circle"></i> 0 VNĐ</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if r.status == 'RETURNING' %}
+                            <span class="badge-status returning">
+                                <i class="bi bi-hourglass-split"></i> Chờ duyệt trả
+                            </span>
+                        {% else %}
+                            <form action="/return/{{ r.id }}" method="POST">
+                                <button type="submit" class="btn-warning-gradient">
+                                    <i class="bi bi-arrow-return-left"></i> Trả sách
+                                </button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="5">
+                        <div class="empty-state">
+                            <i class="bi bi-inbox"></i>
+                            <p>Bạn không mượn cuốn sách nào.</p>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Lịch sử mượn trả -->
+<div class="section-card" style="animation-delay: 0.15s;">
+    <div class="section-header secondary">
+        <i class="bi bi-clock"></i> Lịch sử mượn trả
+    </div>
+    <div style="overflow-x: auto;">
+        <table class="table-dark-custom history-book">
+            <thead>
+                <tr>
+                    <th>Tên sách</th>
+                    <th>Ngày mượn</th>
+                    <th>Ngày trả</th>
+                    <th>Tiền phạt</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in history %}
+                <tr>
+                    <td><strong>{{ r.book.title }}</strong></td>
+                    <td>{{ r.borrow_date.strftime('%d/%m/%Y') }}</td>
+                    <td>{{ r.return_date.strftime('%d/%m/%Y') if r.return_date else '---' }}</td>
+                    <td>
+                        {% if r.return_date and r.fine > 0 %}
+                            <span class="fine-amount">{{ "{:,}".format(r.fine) }} VNĐ</span>
+                        {% elif r.return_date %}
+                            <span style="color: var(--success);">0 VNĐ</span>
+                        {% else %}
+                            <span style="color: var(--text-muted);">---</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if r.status == 'RETURNED' %}
+                            <span class="badge-status returned"><i class="bi bi-check-circle-fill"></i> Đã trả</span>
+                        {% elif r.status == 'RETURNING' %}
+                            <span class="badge-status returning"><i class="bi bi-hourglass-split"></i> Chờ duyệt trả</span>
+                        {% else %}
+                            <span class="badge-status borrowing"><i class="bi bi-hourglass-split"></i> Đang mượn</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
