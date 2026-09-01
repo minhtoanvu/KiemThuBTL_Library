@@ -11,46 +11,52 @@ A robust, production-grade **Library Management System** bundled with a comprehe
 
 ---
 
-## 🎯 QA & Testing Highlights
+## 📌 Table of Contents
+1. [🏆 QA & Testing Highlights](#-qa--testing-highlights)
+2. [⚙️ Architecture & Tech Stack](#️-architecture--tech-stack)
+3. [🚀 Getting Started](#-getting-started)
+4. [🧪 Running Tests](#-running-tests)
+5. [👤 Author](#-author)
+
+---
+
+## 🏆 QA & Testing Highlights
 
 This project was built with a "Quality-First" mindset to demonstrate proficiency in software testing methodologies and test automation frameworks.
 
 <p align="center">
   <img src="docs/ci_pipeline.png" alt="CI Pipeline Dashboard" width="800">
 </p>
+
+### 📊 Test Case Execution Metrics
+Comprehensive test case documentation (`TESTCASE_LIB.xlsx`) covering 6 core modules with **63 Test Cases** (98.41% Pass Rate).
+
+| Module | Features Tested | Total TCs | Pass Rate |
+| :--- | :--- | :---: | :---: |
+| **B01 - Mượn sách** | Borrow limits, Out of stock, Overdue debts prevention | 15 | 100% |
+| **R01 - Trả sách** | On-time, Overdue fines calculation, Double-click prevention | 11 | 100% |
+| **F01 - Tìm kiếm** | Search by Book Name, Author, Category | 12 | 91.6% |
+| **L01 - Xác thực** | Login flows, Password constraints, Validations | 13 | 100% |
+| **M01 - Quản trị User** | User management, Account locking | 7 | 100% |
+| **H01 - Thống kê** | Statistics, Borrow/Return History | 5 | 100% |
+
 ### 🔬 Test Automation Capabilities
 - **End-to-End (E2E) UI Testing:** Automated critical user journeys (Login, Book Borrowing, Search) using **Selenium WebDriver**.
 - **Page Object Model (POM):** Implemented POM for UI tests (`BasePage`, `HomePage`, `LoginPage`, `MyBook`) to ensure high maintainability and code reusability.
 - **API & Unit Testing:** Thorough backend testing using **Pytest** for business logic (fines calculation, inventory management, authentication).
-- **Test Case Design & Execution:** Comprehensive test case documentation (`TESTCASE_LIB.xlsx`) covering 6 core modules with **63 Test Cases** (98.41% Pass Rate).
-  - **B01 - Mượn sách (Borrow):** 15 TCs (Borrow limits, Out of stock, Overdue debts prevention).
-  - **R01 - Trả sách (Return):** 11 TCs (On-time, Overdue fines calculation, Double-click prevention).
-  - **F01 - Tìm kiếm (Search):** 12 TCs (Search by Book Name, Author, Category).
-  - **L01 - Xác thực (Auth):** 13 TCs (Login flows, Password constraints, Validations).
-  - **M01 & H01 - Quản trị (Admin):** 12 TCs (User management, Account locking, Statistics, History).
 - **Test Coverage Analysis:** Integrated **pytest-cov** to measure and report code coverage, ensuring high confidence in code quality.
 - **Continuous Integration:** Configured GitHub Actions for automated test execution on every push/pull request.
 
 ---
 
-## 🏗️ Technical Stack
+## ⚙️ Architecture & Tech Stack
 
-### **QA Automation Stack**
-- **Framework:** `Pytest` (Test Runner & Assertions)
-- **UI Automation:** `Selenium WebDriver`
-- **Design Pattern:** Page Object Model (POM)
-- **Reporting:** `pytest-cov` (Coverage Reports)
-- **CI/CD:** GitHub Actions
+### **Technical Stack**
+- **QA Automation:** `Pytest`, `Selenium WebDriver`, `pytest-cov`, `GitHub Actions`
+- **Backend:** `Python`, `Flask`, `Flask-SQLAlchemy`, `Flask-Login`
+- **Frontend & Database:** `HTML5`, `CSS3`, `Bootstrap`, `SQLite/MySQL`
 
-### **Application Stack**
-- **Backend:** Python, Flask, Flask-SQLAlchemy, Flask-Login
-- **Frontend:** HTML5, CSS3, Jinja2 Templates, Bootstrap
-- **Database:** MySQL / SQLite
-
----
-
-## ⚙️ Project Architecture
-
+### **Project Structure**
 ```text
 library-qa/
 ├── app/
@@ -81,9 +87,9 @@ library-qa/
 Follow these steps to set up the environment, run the web application, and execute the test suites.
 
 ### 1️⃣ Prerequisites
-- Python 3.10 or higher
+- Python 3.10+
 - Git
-- Chrome Browser & ChromeDriver (for Selenium tests)
+- Chrome Browser & ChromeDriver (for Selenium E2E tests)
 
 ### 2️⃣ Installation & Setup
 
@@ -92,7 +98,7 @@ Follow these steps to set up the environment, run the web application, and execu
 git clone https://github.com/minhtoanvu/library-qa.git
 cd library-qa
 
-# Create and activate a virtual environment (Recommended)
+# Create and activate a virtual environment
 python -m venv venv
 source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 
@@ -112,9 +118,9 @@ The application will be accessible at `http://localhost:5000`.
 
 ---
 
-## 🧪 Executing the QA Suite
+## 🧪 Running Tests
 
-The test suite is highly modular, allowing you to run specific testing layers.
+The test suite is modular, allowing you to run specific testing layers.
 
 ### Run All Tests
 ```bash
@@ -134,19 +140,14 @@ pytest app/tests/test_sel.py -v
 
 ### Generate Code Coverage Report
 ```bash
-# Display coverage report in terminal
 pytest app/tests/ --cov=app --cov-report=term-missing
-
-# Generate an HTML coverage report
-pytest app/tests/ --cov=app --cov-report=html
-# Open htmlcov/index.html in your browser to view the detailed report
 ```
 
 ---
 
 ## 👤 Author
 
-**Minh** 
+**Minh**  
 *QA Automation Engineer / Software Tester*
 
 *If you are reviewing this repository for a QA/Tester role, I highly recommend checking out the `app/tests/` directory to review the Page Object Model implementation and Pytest configurations.*
