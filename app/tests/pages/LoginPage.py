@@ -1,4 +1,4 @@
-from app.tests.BasePage import BasePage
+from app.tests.pages.BasePage import BasePage
 from selenium.webdriver.common.by import By
 class LoginPage(BasePage):
     URL = 'http://127.0.0.1:5000/login'
