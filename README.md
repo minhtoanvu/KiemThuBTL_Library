@@ -1,7 +1,6 @@
 # 📚 library-qa: Full-Stack Test Automation Portfolio Project
 
-[![CI Pipeline](https://github.com/minhtoanvu/library-qa/actions/workflows/test.yml/badge.svg)](https://github.com/minhtoanvu/library-qa/actions)
-[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![CI Pipeline](https://github.com/minhtoanvu/KiemThuBTL_Library/actions/workflows/test.yml/badge.svg)](https://github.com/minhtoanvu/KiemThuBTL_Library/actions)[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.x-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![Selenium](https://img.shields.io/badge/Selenium-4.x-43B02A?logo=selenium&logoColor=white)](https://www.selenium.dev/)
 [![Pytest](https://img.shields.io/badge/Pytest-7.x-0A9EDC?logo=pytest&logoColor=white)](https://docs.pytest.org/)
@@ -24,9 +23,8 @@ A robust, production-grade **Library Management System** bundled with a comprehe
 
 This project was built with a "Quality-First" mindset to demonstrate proficiency in software testing methodologies and test automation frameworks.
 
-<p align="center">
-  <img src="docs/ci_pipeline.png" alt="CI Pipeline Dashboard" width="800">
-</p>
+![CI Pipeline Dashboard](docs/ci_pipeline.png)
+
 
 ### 📊 Test Case Execution Metrics
 Comprehensive test case documentation (`TESTCASE_LIB.xlsx`) covering 6 core modules with **63 Test Cases** (98.41% Pass Rate).
@@ -95,8 +93,8 @@ Follow these steps to set up the environment, run the web application, and execu
 
 ```bash
 # Clone the repository
-git clone https://github.com/minhtoanvu/library-qa.git
-cd library-qa
+git clone https://github.com/minhtoanvu/KiemThuBTL_Library.git
+cd KiemThuBTL_Library
 
 # Create and activate a virtual environment
 python -m venv venv
