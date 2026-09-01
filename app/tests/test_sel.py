@@ -3,8 +3,8 @@ import pytest
 from app.tests.pages.HomePage import HomePage
 
 from selenium.webdriver.common.by import By
-from app.tests.LoginPage import LoginPage
-from app.tests.MyBook import MyBook
+from app.tests.pages.LoginPage import LoginPage
+from app.tests.pages.MyBook import MyBook
 from app.tests.test_base import test_app ,driver
 def test_search(driver):
     home = HomePage(driver)
