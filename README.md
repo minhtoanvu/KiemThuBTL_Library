@@ -14,12 +14,21 @@ A robust, production-grade **Library Management System** bundled with a comprehe
 ## 🎯 QA & Testing Highlights
 
 This project was built with a "Quality-First" mindset to demonstrate proficiency in software testing methodologies and test automation frameworks.
+
+<p align="center">
+  <img src="docs/ci_pipeline.png" alt="CI Pipeline Dashboard" width="800">
+</p>
 ### 🔬 Test Automation Capabilities
 - **End-to-End (E2E) UI Testing:** Automated critical user journeys (Login, Book Borrowing, Search) using **Selenium WebDriver**.
 - **Page Object Model (POM):** Implemented POM for UI tests (`BasePage`, `HomePage`, `LoginPage`, `MyBook`) to ensure high maintainability and code reusability.
 - **API & Unit Testing:** Thorough backend testing using **Pytest** for business logic (fines calculation, inventory management, authentication).
+- **Test Case Design & Execution:** Comprehensive test case documentation (`TESTCASE_LIB.xlsx`) covering 6 core modules with **63 Test Cases** (98.41% Pass Rate).
+  - **B01 - Mượn sách (Borrow):** 15 TCs (Borrow limits, Out of stock, Overdue debts prevention).
+  - **R01 - Trả sách (Return):** 11 TCs (On-time, Overdue fines calculation, Double-click prevention).
+  - **F01 - Tìm kiếm (Search):** 12 TCs (Search by Book Name, Author, Category).
+  - **L01 - Xác thực (Auth):** 13 TCs (Login flows, Password constraints, Validations).
+  - **M01 & H01 - Quản trị (Admin):** 12 TCs (User management, Account locking, Statistics, History).
 - **Test Coverage Analysis:** Integrated **pytest-cov** to measure and report code coverage, ensuring high confidence in code quality.
-- **Test Case Design:** Structured manual test cases and scenarios documented in `TESTCASE_LIB.xlsx`.
 - **Continuous Integration:** Configured GitHub Actions for automated test execution on every push/pull request.
 
 ---
