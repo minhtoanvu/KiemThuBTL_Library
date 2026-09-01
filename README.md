@@ -1,6 +1,6 @@
 # 📚 library-qa: Full-Stack Test Automation Portfolio Project
 
-[![CI Pipeline](https://github.com/minhtoanvu/library-qa/actions/workflows/ci.yml/badge.svg)](https://github.com/minhtoanvu/library-qa/actions)
+[![CI Pipeline](https://github.com/minhtoanvu/library-qa/actions/workflows/test.yml/badge.svg)](https://github.com/minhtoanvu/library-qa/actions)
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/Flask-2.x-000000?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![Selenium](https://img.shields.io/badge/Selenium-4.x-43B02A?logo=selenium&logoColor=white)](https://www.selenium.dev/)
@@ -14,6 +14,10 @@ A robust, production-grade **Library Management System** bundled with a comprehe
 ## 🎯 QA & Testing Highlights
 
 This project was built with a "Quality-First" mindset to demonstrate proficiency in software testing methodologies and test automation frameworks.
+
+<p align="center">
+  <img src="docs/ci_pipeline.png" alt="CI Pipeline Dashboard" width="800">
+</p>
 
 ### 🔬 Test Automation Capabilities
 - **End-to-End (E2E) UI Testing:** Automated critical user journeys (Login, Book Borrowing, Search) using **Selenium WebDriver**.
