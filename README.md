@@ -58,15 +58,20 @@ library-qa/
 │   ├── models/              # SQLAlchemy Database Models
 │   ├── templates/           # Jinja2 UI Templates
 │   └── tests/               # 🧪 QA Automation Suite
-│       ├── BasePage.py      # POM: Base class with common UI actions
-│       ├── HomePage.py      # POM: Home page interactions
-│       ├── LoginPage.py     # POM: Login page interactions
+│       ├── pages/           # POM: Page Object classes
+│       │   ├── BasePage.py
+│       │   ├── HomePage.py
+│       │   └── LoginPage.py
 │       ├── test_*.py        # Pytest Unit & API test files
 │       └── test_sel.py      # Selenium E2E test execution
+├── docs/                    # Documentation & Assets
+│   ├── ci_pipeline.png      
+│   └── TESTCASE_LIB.xlsx    # Comprehensive Test Cases
+├── scripts/                 # Utility Scripts
+│   ├── seed_test_data.py    # Database seeding utility
+│   └── create_overdue.py    # Overdue data generation
 ├── index.py                 # Application entry point
-├── requirements.txt         # Project dependencies
-├── seed_test_data.py        # Database seeding utility for consistent test state
-└── TESTCASE_LIB.xlsx        # Comprehensive Test Case specifications
+└── requirements.txt         # Project dependencies
 ```
 
 ---
@@ -95,7 +100,7 @@ source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 pip install -r requirements.txt
 
 # Seed the database with test data
-python seed_test_data.py
+python scripts/seed_test_data.py
 ```
 
 ### 3️⃣ Running the Application

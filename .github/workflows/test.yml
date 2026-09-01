@@ -57,7 +57,7 @@ jobs:
 
       - name: Seed test data
         run: |
-          python seed_test_data.py
+          python scripts/seed_test_data.py
 
       - name: Start Flask
         run: |

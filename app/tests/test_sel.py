@@ -1,6 +1,6 @@
 import time
 import pytest
-from app.tests.HomePage import HomePage
+from app.tests.pages.HomePage import HomePage
 
 from selenium.webdriver.common.by import By
 from app.tests.LoginPage import LoginPage
