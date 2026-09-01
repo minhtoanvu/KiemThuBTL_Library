@@ -14,11 +14,6 @@ A robust, production-grade **Library Management System** bundled with a comprehe
 ## 🎯 QA & Testing Highlights
 
 This project was built with a "Quality-First" mindset to demonstrate proficiency in software testing methodologies and test automation frameworks.
-
-<p align="center">
-  <img src="docs/ci_pipeline.png" alt="CI Pipeline Dashboard" width="800">
-</p>
-
 ### 🔬 Test Automation Capabilities
 - **End-to-End (E2E) UI Testing:** Automated critical user journeys (Login, Book Borrowing, Search) using **Selenium WebDriver**.
 - **Page Object Model (POM):** Implemented POM for UI tests (`BasePage`, `HomePage`, `LoginPage`, `MyBook`) to ensure high maintainability and code reusability.
